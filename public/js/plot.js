@@ -34,12 +34,18 @@ function loadPosts(){
                     console.log("Document data:", doc.data());
 
                     var root = document.getElementById('post-selection');
-                    doc.data().posts.map(post => {
+                    
+                    for(let i = 0; i< doc.data().posts.length; i++){
+                        
+                        let post = doc.data().posts[i];
+                        // console.log(post)
                         let option = document.createElement('option');
+                        option.setAttribute('data-index', i);
+                        // console.log(i);
                         option.value = post.datetime;
                         option.innerHTML = post.datetime;
                         root.appendChild(option);
-                    });
+                    }
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
