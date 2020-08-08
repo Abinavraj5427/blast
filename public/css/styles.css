@@ -70,3 +70,14 @@ body{
     padding: 10%;
     /* padding-top: 15%; */
 }
+
+
+#intro-msg{
+    margin-bottom: 5%;
+    text-align: center;
+    color:  #66fcf1;
+}
+
+#intro-msg h2{
+    font-size: 8vh;
+}

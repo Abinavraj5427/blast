@@ -1,0 +1,87 @@
+label{
+    color: #66fcf1;
+    font-size: 4vh;
+}
+
+input.platform-box{
+    width: 3vh;
+    height: 3vh;
+    /* transform : scale(4); */
+}
+
+.checkbox-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+#content{
+    padding-left: 20%;
+    padding-right: 20%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#platform-checks{
+    margin-top: 10%;
+}
+
+#select-all, #post-btn{
+    height: 5vh;
+    width: 20vh;
+    border-radius: 5px;
+    background-color: #66fcf1;
+    border: none;
+    border-style: none;
+    font-family:"Righteous";
+    font-size: 3vh;
+}
+
+.center-single{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top:5%;
+    margin-bottom: 5%;
+}
+
+#post-file{
+    font-family:"Righteous";
+    color: #66fcf1;
+}
+
+#post-text, #post-text:focus{
+    width: 80%;
+    font-size: 3vh;
+    background-color:  #c5c6c7;
+    border: 10px  #c5c6c7;
+    border-style: solid;
+    outline: none;
+    
+    font-family:"Righteous";
+}
+
+.form{
+    margin-top:10%;
+    margin-bottom: 10%;
+}
+
+#big-box{
+    background-color: #1f2833;
+    border-radius: 10%;
+    padding: 10%;
+    
+    animation-name: background;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+/* The animation code */
+@keyframes background {
+    0%   {box-shadow: 0 10px 20px 0 #45a29dab;}
+    50%  {box-shadow: 0 32px 64px 0 #45a29dab;}
+    100% {box-shadow: 0 10px 20px 0 #45a29dab;}
+}

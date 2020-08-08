@@ -3,22 +3,79 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/post.css">
 
-    
+
     <script src="./js/index.js"></script>
-    <script src="./js/logout.js"></script>
-    <script src="./js/configure.js"></script>
+    <script src="./js/post.js"></script>
 </head>
 
 <body>
+    <!-- Navbar -->
     <div class="topnav">
         <a href="configure.html">Configure</a>
         <a href="post.html">Post</a>
-        <a href="analytics.html">Analytics</a>
-        <a href="href="javascript:logout()"">Log Out</a>
+        <a href="plot.html">Analytics</a>
+        <a href="href=" javascript:logout()"">Log Out</a>
     </div>
-    
+    <!-- End Navbar -->
+
+    <!-- Content -->
+    <div id="content">
+        <div id="intro-msg">
+            <h2>Post</h2>
+            <p>Select your platforms. Send the post.</p>
+        </div>
+
+        <div id="big-box">
+            <div class="center-single"> <input type="submit" id="select-all" onclick="selectAll()" value="Select All">
+            </div>
+
+            <div id="platform-checks">
+
+                <div class="checkbox-row">
+                    <div class="checkbox">
+                        <input type="checkbox" class="platform-box" value="Reddit">
+                        <label>Reddit</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" class="platform-box" value="Facebook">
+                        <label>Facebook</label>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" class="platform-box" value="Instagram">
+                        <label>Instagram</label>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="checkbox-row">
+                    <div class="checkbox">
+                        <input type="checkbox" class="platform-box" value="Twitter">
+                        <label>Twitter</label>
+                    </div>
+                    
+                </div>
+
+                <div class="center-single form"><input id="post-file" type="file" value="Image Upload"></div>
+                <div class="center-single form"><textarea rows=10 id="post-text" placeholder="Post Message"></textarea>
+                </div>
+
+            </div>
+
+
+            <div class="center-single"> <input type="submit" id="post-btn" onclick="post()" value="POST"></div>
+
+        </div>
+
+    </div>
+    <!-- End Content -->
+
 </body>
+<footer>
+
+    <script src="./js/logout.js"></script>
+</footer>
 
 </html>

@@ -17,7 +17,6 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/logout.js"></script>
     <script src="./js/configure.js"></script>
 </head>
 
@@ -26,14 +25,14 @@
     <div class="topnav">
         <a href="configure.html">Configure</a>
         <a href="post.html">Post</a>
-        <a href="analytics.html">Analytics</a>
+        <a href="plot.html">Analytics</a>
         <a href="href=" javascript:logout()"">Log Out</a>
     </div>
     <!-- End Navbar -->
 
     <!-- Content -->
     <div id="content">
-        <div id = "configure-msg">
+        <div id = "intro-msg">
             <h2>Configure</h2>
             <p>Set up your account credentials for your platforms.</p>
 
@@ -43,19 +42,19 @@
         <!-- Platforms -->
         <div id="platforms">
             <div class="card-columns">
-                <div class="card" onclick="">
+                <div class="card" onclick = 'configure("reddit");'>
                     <div class="imgHolder">
                         <img src="./assets/redit.png" class="card-img-top" alt="...">
                     </div>
                     <h5>Not Configured</h5>
                 </div>
-                <div class="card" onclick="">
+                <div class="card" onclick = 'configure("facebook");'>
                     <div class="imgHolder">
                         <img src="./assets/facebook.png" class="card-img-top" alt="...">
                     </div>
                     <h5>Not Configured</h5>
                 </div>
-                <div class="card" onclick="">
+                <div class="card" onclick = 'configure("instagram");'>
                     <div class="imgHolder">
                         <img src="./assets/instagram.png" class="card-img-top" alt="...">
                     </div>
@@ -70,5 +69,8 @@
     <!-- End Content -->
 
 </body>
-
+<footer>
+    
+    <script src="./js/logout.js"></script>
+</footer>
 </html>
