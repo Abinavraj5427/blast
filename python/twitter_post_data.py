@@ -5,10 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from bs4 import BeautifulSoup as bs
-
 import requests
-from bs4 import BeautifulSoup
-
 import time
 
 PATH = "/Users/briantaylor/Desktop/important/chromedriver"
