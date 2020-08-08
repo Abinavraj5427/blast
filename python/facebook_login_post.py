@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+PATH = "/Users/Wish/Downloads/chromedriver"
 driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.facebook.com")
