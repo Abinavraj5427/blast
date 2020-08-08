@@ -16,3 +16,5 @@ username_login.send_keys("throwaway3949596")
 password_login = driver.find_element_by_id("loginPassword")
 password_login.send_keys("1234567a")
 
+link = driver.find_element_by_link_text("Log in")
+link.click()
