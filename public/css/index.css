@@ -7,6 +7,12 @@ body {
     padding-bottom: 3%;
 }
 
+
+input{
+    font-size: 3vh;
+    font-family: 'Righteous';
+}
+
 input[type=text]{
     height: 5vh;
     width: 30vh;
@@ -29,6 +35,7 @@ h1 {
 
 #center-form{
     box-shadow: 0 32px 64px 0 #45a29dab;
+    background-color: #1f2833;
     animation-name: background;
     animation-duration: 5s;
     animation-iteration-count: infinite;

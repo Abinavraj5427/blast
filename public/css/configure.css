@@ -12,12 +12,12 @@
 .card{
     box-shadow: 0 5px 10px 0 #45a29dab;
     text-align: center;
+    cursor: pointer;
 }
 
 #configure-msg{
     margin-bottom: 5%;
     text-align: center;
-    
     color:  #66fcf1;
 }
 
