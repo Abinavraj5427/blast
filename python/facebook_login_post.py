@@ -6,13 +6,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-PATH = "/Users/Wish/Downloads/chromedriver"
-driver = webdriver.Chrome(PATH)
+PATH = "/Users/briantaylor/Desktop/important/geckodriver"
+driver = webdriver.Firefox(PATH)
 
 driver.get("https://www.facebook.com")
 
 username = driver.find_element_by_id("email")
-username.send_keys("bptincali@gmail.com")
+username.send_keys("throwaway3949596@gmail.com")
 
 password = driver.find_element_by_id('pass')
 password.send_keys("1234567a")
