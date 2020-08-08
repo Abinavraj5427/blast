@@ -10,12 +10,12 @@ driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.reddit.com/login/")
 
+
 username_login = driver.find_element_by_id('loginUsername')
 username_login.send_keys("throwawaytest2864")
 
 password_login = driver.find_element_by_id("loginPassword")
 password_login.send_keys("1234567a")
-
 
 button = driver.find_element_by_css_selector(".m-full-width")
 button.click()
@@ -24,11 +24,11 @@ time.sleep(10)
 
 
 subs = ['r/testingground4bots','r/test', 'r/BotsPlayHere']
+urls = []
 
 for sub in subs:
 	driver.get(f"https://www.reddit.com/{sub}/submit")
-	print("supposedly moved to next sub")
-	print(sub)
+
 	title = driver.find_element_by_css_selector(".PqYQ3WC15KaceZuKcFI02")
 	title.send_keys("Testing 1 2 3 4 5 6")
 
@@ -41,6 +41,8 @@ for sub in subs:
 	post_btn.click()
 	print("done with first round.")
 	time.sleep(4)
+	urls.append(driver.current_url)
+	#The list of urls will enable us to easily track posts to gain statistics about those posts later.
 
 
 #Alright, so, it works if it is allowed to post multiple times. However, if it is thrown an error,
