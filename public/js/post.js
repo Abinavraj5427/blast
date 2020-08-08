@@ -4,8 +4,8 @@ function selectAll() {
     var i;
     for (i = 0; i < elements.length; i++) {
         elements[i].checked = !elements[i].checked;
-        if(elements[i].value == 'reddit')
-        updateReddit(elements[i].checked);
+        if (elements[i].value == 'reddit')
+            updateReddit(elements[i].checked);
     }
     // elements.map(element => element.checked = true);
 }
@@ -34,48 +34,70 @@ function onloadauth() {
 onloadauth();
 
 
-function post(){
+function post() {
     var json = {};
-    var elements = document.getElementsByClassName("platform-box");
-    var i;
-    for (i = 0; i < elements.length; i++) {
-        json[elements[i].value] = elements[i].checked;
-    }
-    json["message"] = document.getElementById("post-text").value;
-    
-    var file = (document.getElementById("post-file").files[0]);
-    if(file){
-        var name = makeid(7)+".png";
-        var ref = storage.ref().child("posts/"+name);
-        ref.put(file).then(function(snapshot) {
-            console.log('Uploaded a blob or file!');
-            json["pic"] = name;
-        });
-    }else json["pic"] = "";
 
-    if(json["reddit"]){
-        json["subject"] = document.getElementById("subject").value;
-        json["subreddit"] = document.getElementById("subreddit").value;
-    }
-    //send post to backend
-    console.log(json);
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            json['email'] = user.email;
+
+            var elements = document.getElementsByClassName("platform-box");
+            var i;
+            for (i = 0; i < elements.length; i++) {
+                json[elements[i].value] = elements[i].checked;
+            }
+            json["message"] = document.getElementById("post-text").value;
+
+            var file = (document.getElementById("post-file").files[0]);
+            if (file) {
+                var name = makeid(7) + ".png";
+                var ref = storage.ref().child("posts/" + name);
+                ref.put(file).then(function (snapshot) {
+                    console.log('Uploaded a blob or file!');
+                    json["pic"] = name;
+                });
+            } else json["pic"] = "";
+
+            if (json["reddit"]) {
+                console.log("REDDDDDDDDIT")
+                json["subject"] = document.getElementById("subject").value;
+                json["subreddit"] = document.getElementById("subreddit").value;
+            }
+            //send post to backend
+            console.log(json);
+            fetch("http://127.0.0.1:5000/post", {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+
+                    },
+                    body: JSON.stringify(json)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+        } else {
+            window.location.href = "./index.html";
+        }
+    });
+
 }
 
 function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
+}
 
- 
 
- function updateReddit(value){
+
+function updateReddit(value) {
     var root = document.getElementById('reddit-fields');
-    if(value){
+    if (value) {
         var div1 = document.createElement("div");
         div1.className = "cente-single form";
         var subject = document.createElement("input");
@@ -93,10 +115,9 @@ function makeid(length) {
         root.appendChild(document.createElement("br"));
         div2.appendChild(subreddit);
         root.appendChild(div2);
-    }
-    else{
+    } else {
         while (root.firstChild) {
             root.removeChild(root.lastChild);
         }
     }
- }
+}
