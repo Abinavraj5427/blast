@@ -1,7 +1,3 @@
-function selectAll(){
-    alert("Select All");
-}
-
 function onloadauth(){
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
