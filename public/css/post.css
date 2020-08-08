@@ -85,3 +85,25 @@ input.platform-box{
     50%  {box-shadow: 0 32px 64px 0 #45a29dab;}
     100% {box-shadow: 0 10px 20px 0 #45a29dab;}
 }
+
+input[type=text]{
+    height: 5vh;
+    width: 30vh;
+    /* css 3 */
+    border-radius: 5px;
+    /* mozilla */
+    -moz-border-radius: 5px;
+    /* webkit */
+    -webkit-border-radius: 5px;
+    border: none;
+    border-color: transparent;
+    background-color: #c5c6c7;
+    text-align: center;
+}
+
+#reddit-fields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}

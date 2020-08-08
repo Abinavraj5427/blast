@@ -38,16 +38,16 @@
 
                 <div class="checkbox-row">
                     <div class="checkbox">
-                        <input type="checkbox" class="platform-box" value="Reddit">
+                        <input onchange = "updateReddit(this.checked)" type="checkbox" class="platform-box" value="reddit">
                         <label>Reddit</label>
                     </div>
                     <div class="checkbox">
-                        <input type="checkbox" class="platform-box" value="Facebook">
+                        <input type="checkbox" class="platform-box" value="facebook">
                         <label>Facebook</label>
                     </div>
 
                     <div class="checkbox">
-                        <input type="checkbox" class="platform-box" value="Instagram">
+                        <input type="checkbox" class="platform-box" value="instagram">
                         <label>Instagram</label>
                     </div>
 
@@ -65,9 +65,14 @@
                 <div class="center-single form"><textarea rows=10 id="post-text" placeholder="Post Message"></textarea>
                 </div>
 
+                
+
+
             </div>
 
+            <div id = "reddit-fields">
 
+            </div>
             <div class="center-single"> <input type="submit" id="post-btn" onclick="post()" value="POST"></div>
 
         </div>

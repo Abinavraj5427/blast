@@ -1,7 +1,5 @@
 
-function save(){
-    window.location.href = "./configure.html";
-}
+
 
 function getUrlVars() {
     var vars = {};
@@ -52,6 +50,8 @@ function save(){
             db.collection("users").doc(email).update(json)
             .then(function() {
                 console.log("Document successfully updated!");
+                
+                window.location.href = "./configure.html";
             });
 
         } else {
