@@ -14,13 +14,3 @@
     text-align: center;
     cursor: pointer;
 }
-
-#configure-msg{
-    margin-bottom: 5%;
-    text-align: center;
-    color:  #66fcf1;
-}
-
-#configure-msg h2{
-    font-size: 8vh;
-}
