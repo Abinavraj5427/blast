@@ -27,5 +27,5 @@ urls = ['https://twitter.com/throwaway394959/status/1292065983146758145',
 	"https://twitter.com/CollegeBoard/status/1291750806920798209"]
 for url in urls:
 	driver.get(url)
-	#total_number =  driver.find_element_by_css_selector(".css-16my406")
-	#print(total_number.text)
+	total_number =  driver.find_element_by_css_selector(".css-4rbku5")
+	print(total_number.text)
