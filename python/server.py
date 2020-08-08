@@ -3,9 +3,9 @@ from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from app import login_and_post_reddit
+from login_post_reddit import login_and_post_reddit
 
-cred = credentials.Certificate('./python/firebase-sdk.json');
+cred = credentials.Certificate('firebase-sdk.json');
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 userRef = db.collection('users')
