@@ -83,6 +83,7 @@ function firstTime() {
                                 username: ""
                             },
                             posts: [{
+                                name: "test",
                                 datetime: "",
                                 instagram_url: "",
                                 reddit_url: "",

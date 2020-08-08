@@ -20,3 +20,40 @@ function onloadauth(){
 }
 
 onloadauth();
+
+function loadPosts(){
+    // Firebase Auth
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+
+            var docRef = db.collection("users").doc(user.email);
+
+            //Check if doc exists
+            docRef.get().then(function (doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+
+                    var root = document.getElementById('post-selection');
+                    doc.data().posts.map(post => {
+                        let option = document.createElement('option');
+                        option.value = post.datetime;
+                        option.innerHTML = post.datetime;
+                        root.appendChild(option);
+                    });
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch(function (error) {
+                console.log("Error getting document:", error);
+            });
+            // ...
+        } else {
+            // User is signed out.
+            // ...
+            window.location.href = "./index.html";
+        }
+    });
+}
+
+loadPosts();
