@@ -41,7 +41,7 @@ h1 {
     animation-iteration-count: infinite;
 }
 
-#login_btn{
+#login_btn, #register_btn{
     height: 5vh;
     width: 20vh;
     border-radius: 5px;

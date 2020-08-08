@@ -1,8 +1,8 @@
-function configure(platform){
-    window.location.href = "./creds.html?platform="+platform;
+function configure(platform) {
+    window.location.href = "./creds.html?platform=" + platform;
 }
 
-function onloadauth(){
+function onloadauth() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -25,21 +25,87 @@ function onloadauth(){
 
 onloadauth();
 
-function loadConfig(email){
+function loadConfig(email) {
     var emailRef = db.collection("users").doc(email);
     console.log(email)
-    emailRef.get().then(function(doc) {
+    emailRef.get().then(function (doc) {
         if (doc.exists) {
             console.log("Document data:", doc.data());
-            document.getElementById("reddit-status").innerHTML = doc.data().reddit.configured? "Configured": "Not Configured";
-            document.getElementById("twitter-status").innerHTML = doc.data().twitter.configured? "Configured": "Not Configured";
-            document.getElementById("instagram-status").innerHTML = doc.data().instagram.configured? "Configured": "Not Configured";
-            document.getElementById("facebook-status").innerHTML = doc.data().facebook.configured? "Configured": "Not Configured";
+            document.getElementById("reddit-status").innerHTML = doc.data().reddit.configured ? "Configured" : "Not Configured";
+            document.getElementById("twitter-status").innerHTML = doc.data().twitter.configured ? "Configured" : "Not Configured";
+            document.getElementById("instagram-status").innerHTML = doc.data().instagram.configured ? "Configured" : "Not Configured";
+            document.getElementById("facebook-status").innerHTML = doc.data().facebook.configured ? "Configured" : "Not Configured";
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting document:", error);
     });
+}
+firstTime();
+function firstTime() {
+
+    // Firebase Auth
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+
+            var docRef = db.collection("users").doc(user.email);
+
+            //Check if doc exists
+            docRef.get().then(function (doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+
+                    //Create Record
+                    db.collection("users").doc(user.email).set({
+                            facebook: {
+                                configured: false,
+                                password: "",
+                                username: ""
+                            },
+                            instagram: {
+                                configured: false,
+                                password: "",
+                                username: ""
+                            },
+                            reddit: {
+                                configured: false,
+                                password: "",
+                                username: ""
+                            },
+                            twitter: {
+                                configured: false,
+                                password: "",
+                                username: ""
+                            },
+                            posts: [{
+                                datetime: "",
+                                instagram_url: "",
+                                reddit_url: "",
+                                twitter_url: ""
+                            }]
+
+                        })
+                        .then(function () {
+                            console.log("Document successfully written!");
+                        })
+                        .catch(function (error) {
+                            console.error("Error writing document: ", error);
+                        });
+                }
+            }).catch(function (error) {
+                console.log("Error getting document:", error);
+            });
+            // ...
+        } else {
+            // User is signed out.
+            // ...
+            window.location.href = "./index.html";
+        }
+    });
+
 }
