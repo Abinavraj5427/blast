@@ -3,6 +3,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import requests
+from bs4 import BeautifulSoup
 
 import time
 
@@ -29,6 +31,13 @@ urls = ['https://twitter.com/throwaway394959/status/1292065983146758145',
 	"https://twitter.com/CollegeBoard/status/1291750806920798209"]
 for url in urls:
 	driver.get(url)
+	page = requests.get(url)
+	soup = BeautifulSoup(page.text, "html.parser")
+	print(soup)
+	retweet_comment = soup.find('span', {'class':"css-1dbjc4n r-1mf7evn"})
+	print(retweet_comment)
+
+	
 	#total_number =  driver.find_element_by_css_selector(".css-16my406")
 	#print(total_number.text)
 
