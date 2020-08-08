@@ -16,6 +16,7 @@ username_login.send_keys("throwaway3949596")
 password_login = driver.find_element_by_id("loginPassword")
 password_login.send_keys("1234567a")
 
+<<<<<<< HEAD
 button = driver.find_element_by_css_selector(".m-full-width")
 button.click()
 
@@ -28,3 +29,7 @@ search_bar = driver.find_element_by_id("header-search-bar")
 search_bar.send_keys("r/test")
 search_bar.send_keys(Keys.ENTER)
 """
+=======
+link = driver.find_element_by_link_text("Login")
+link.click()
+>>>>>>> 87296406ae9df73e28ccbf261078f66875a58f47
