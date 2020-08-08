@@ -81,3 +81,17 @@ body{
 #intro-msg h2{
     font-size: 8vh;
 }
+
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #66fcf1;
+  }
