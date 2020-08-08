@@ -1,28 +1,30 @@
 <html>
 
-    <head>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
-        <link rel="stylesheet" href="./css/styles.css">
-        <link rel="stylesheet" href="./css/index.css">
-        
-    </head>
+    <script src="./js/index.js"></script>
+</head>
 
-    <body>
-        <div id = "outer-form">
-            <div id = "center-form">
-                <div id = "heading"><h1>blast</h1></div>
-                
-                <br/>
-
-                <input id="username" placeholder="username" type="text">
-                <br/>
-                <input id="password" placeholder="password" type="text">
-
-                <br/>
-                <input id="login_btn" type="submit" value="Login">
+<body>
+    <div id="outer-form">
+        <div id="center-form">
+            <div id="heading">
+                <h1>blast</h1>
             </div>
+
+            <br />
+
+            <input id="username" placeholder="username" type="text">
+            <br />
+            <input id="password" placeholder="password" type="text">
+
+            <br />
+            <input id="login_btn" type="submit" value="Login" onclick='authenticate()'>
         </div>
-    </body>
+    </div>
+</body>
 
 </html>

@@ -1,9 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+body{ 
+    background-color: #0b0c10;
+    font-family: 'Righteous';
+}
+
 #center-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #1f2833;
     padding: 2% 6%;
     border-radius: 20px;
 }
@@ -16,3 +26,47 @@
     height: 100vh;
 }
 
+.topnav{
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #1f2833;
+    position: fixed;
+    flex-direction: row;
+    display:flex;
+    justify-content: center;
+    
+    animation-name: background;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.topnav a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    letter-spacing: 0.2vw;
+    text-indent: .2vw;
+}
+
+.topnav a:hover{
+    background-color: #45a29e;
+}
+
+/* The animation code */
+@keyframes background {
+    0%   {box-shadow: 0 10px 20px 0 #45a29dab;}
+    50%  {box-shadow: 0 32px 64px 0 #45a29dab;}
+    100% {box-shadow: 0 10px 20px 0 #45a29dab;}
+}
+
+#content{
+    padding: 10%;
+    /* padding-top: 15%; */
+}
