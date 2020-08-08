@@ -1,0 +1,35 @@
+body {
+    overflow: hidden;
+    font-family: 'Righteous';
+    background-color: #0b0c10
+}
+
+#heading {
+    padding-bottom: 3%;
+}
+
+input[type=text]{
+    height: 5vh;
+    width: 30vh;
+    /* css 3 */
+    border-radius: 5px;
+    /* mozilla */
+    -moz-border-radius: 5px;
+    /* webkit */
+    -webkit-border-radius: 5px;
+    border: none;
+    border-color: transparent;
+    background-color: #c5c6c7;
+    text-align: center;
+}
+
+h1 {
+    font-size: 12vh;
+    color: #66fcf1;
+}
+
+@media only screen and (max-width: 480px){
+    h1{
+        font-size: 8em;
+    }
+}
