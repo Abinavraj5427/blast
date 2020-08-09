@@ -29,12 +29,17 @@ def login_and_post_twitter(username, password, message):
 	body = driver.find_element_by_css_selector(".public-DraftStyleDefault-block")
 	body.send_keys(message)
 	body.send_keys(Keys.COMMAND, Keys.ENTER)
-	time.sleep(100)
+	time.sleep(4)
+	driver.get("https://www.twitter.com/throwaway394959")
+	time.sleep(2)
+	post = driver.find_element_by_class_name("css-1dbjc4n")
+	post.click()
+	time.sleep(5)
 
 
 
 if __name__ == '__main__':
-	login_and_post_twitter("throwaway3949596@gmail.com", "1234567a","Test message #9")
+	login_and_post_twitter("throwaway3949596@gmail.com", "1234567a","Test message #26")
 
 
 
