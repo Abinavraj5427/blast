@@ -23,7 +23,10 @@ def get_analytics(url):
 		net_upvotes = net_upvotes.replace("k", "000")
 	if "." in net_upvotes:
 		net_upvotes = net_upvotes.replace(".", "")
-	net_upvotes = int(net_upvotes)
+	try:
+		net_upvotes = int(net_upvotes)
+	except:
+		net_upvotes = 0
 
 	if upvote_percent[1] == "%":
 		upvote_percent = int(upvote_percent[:1])
