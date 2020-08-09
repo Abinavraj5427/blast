@@ -5,7 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from login_post_reddit import login_and_post_reddit
 
-cred = credentials.Certificate('firebase-sdk.json');
+cred = credentials.Certificate('./python/firebase-sdk.json');
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 userRef = db.collection('users')
@@ -26,8 +26,8 @@ def post():
         if(reddit_configured and some_json['reddit']):
             reddit_username = userData["reddit"]["username"]
             reddit_password = userData["reddit"]["password"]
-            reddit_sub = some_json('subreddit')
-            reddit_subject = some_json('subject')
+            reddit_sub = some_json['subreddit']
+            reddit_subject = some_json['subject']
             reddit_message = message;
             login_and_post_reddit(reddit_username, reddit_password, reddit_subject, reddit_message, reddit_sub)
             # print(reddit_username)
