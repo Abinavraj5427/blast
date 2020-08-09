@@ -7,17 +7,21 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 def get_analytics(url):
+	PATH = r"C:\Users\srjnk\Documents\chromedriver\chromedriver.exe"
 	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-	PATH = "/Users/abina/Desktop/chromedriver"
 	options = Options()
+	options.binary_location = binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
 	options.headless = True
 	driver = webdriver.Chrome(PATH, chrome_options=options)
-
 	driver.get(url)
 	upvote_percent = driver.find_element_by_css_selector(".t4Hq30BDzTeJ85vREX7_M").text.strip()
 	net_upvotes = driver.find_element_by_css_selector("._1E9mcoVn4MYnuBQSVDt1gC").text.strip()
 	comments = driver.find_element_by_css_selector(".FHCV02u6Cp2zYL0fhQPsO").text.split(" ")
-	comments = int(comments[0])
+	if comments[0][-1] == 'k':
+		comments = comments[0][:-1]
+		comments = float(comments) * 1000
+	else:
+		comments = int(comments[0])
 
 	if net_upvotes[-1] == "k":
 		net_upvotes = net_upvotes.replace("k", "000")

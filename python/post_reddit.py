@@ -7,13 +7,12 @@ import time
 
 
 def login_and_post_reddit(username, password, header, message, subs):
-	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-	driver = webdriver.Chrome(PATH)
-	driver.get("https://www.reddit.com/login/")
-
-
-	PATH = "/Users/abina/Desktop/chromedriver"
-	driver = webdriver.Chrome(PATH)
+	PATH = r"C:\Users\srjnk\Documents\chromedriver\chromedriver.exe"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	options = Options()
+	options.binary_location = binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
+	options.headless = True
+	driver = webdriver.Chrome(PATH, chrome_options=options)
 
 	driver.get("https://www.reddit.com/login/")
 

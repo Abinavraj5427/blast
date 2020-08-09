@@ -9,14 +9,12 @@ import time
 
 
 def login_and_post_twitter(username, password, message):
+	PATH = r"C:\Users\srjnk\Documents\chromedriver\chromedriver.exe"
 	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-	# PATH = "/Users/Wish/Downloads/chromedriver"
-
-	PATH = "/Users/abina/Desktop/chromedriver"
 	options = Options()
+	options.binary_location = binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
 	options.headless = True
 	driver = webdriver.Chrome(PATH, chrome_options=options)
-
 	driver.get("https://www.twitter.com/login")
 	time.sleep(1)
 	username_login = driver.find_element_by_name("session[username_or_email]")

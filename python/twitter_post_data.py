@@ -7,14 +7,12 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 def get_twitter_analytics(url):
-    # PATH = "/Users/briantaylor/Desktop/important/chromedriver
-    # "
-    PATH = "/Users/abina/Desktop/chromedriver"
-
+    PATH = r"C:\Users\srjnk\Documents\chromedriver\chromedriver.exe"
+    # PATH = "/Users/briantaylor/Desktop/important/chromedriver"
     options = Options()
+    options.binary_location = binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
     options.headless = True
     driver = webdriver.Chrome(PATH, chrome_options=options)
-
     driver.get(url)
     time.sleep(2)
 

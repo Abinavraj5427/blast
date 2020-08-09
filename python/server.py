@@ -10,7 +10,7 @@ from twitter_post import login_and_post_twitter
 from linkedin_post import post_linkedin
 from twitter_post_data import get_twitter_analytics
 
-cred = credentials.Certificate('./python/firebase-sdk.json');
+cred = credentials.Certificate('firebase-sdk.json');
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 userRef = db.collection('users')
@@ -48,13 +48,13 @@ def post():
             post["reddit_url"] = reddit_url
             urls.append(reddit_url)
             # print("POST", post)
-            posts.append(post)
-            userRef.document(email).update({"posts":posts})
+
+
             # print(reddit_username)
         else:
             post["reddit_url"] =""
         
-        twitter_configured = userData["reddit"]["configured"]
+        twitter_configured = userData["twitter"]["configured"]
         if(twitter_configured and some_json['twitter']):
             twitter_username = userData["twitter"]["username"]
             twitter_password = userData["twitter"]["password"]
@@ -63,7 +63,7 @@ def post():
             urls.append(twitter_url)
             post["twitter_url"] = twitter_url
         else:
-            post["twitter_url"] =""
+            post["twitter_url"] = ""
 
         linkedin_configured = userData["linkedin"]["configured"]
         if(linkedin_configured and some_json["linkedin"]):
@@ -75,6 +75,8 @@ def post():
             post["linkedin_url"] = linkedin_url
         else:
             post["linkedin_url"] =""
+        posts.append(post)
+        userRef.document(email).update({"posts":posts})
         return jsonify(urls)
 
 

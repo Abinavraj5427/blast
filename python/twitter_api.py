@@ -20,13 +20,13 @@ def post_twitter(user):
 
 
 	tweet = api.user_timeline(screen_name = user, count = 10, include_rts = True)[0]
-	
-	# PATH = "/Users/Wish/Downloads/chromedriver"
-	PATH = "/Users/abina/Desktop/chromedriver"
+
+	PATH = r"C:\Users\srjnk\Documents\chromedriver\chromedriver.exe"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
 	options = Options()
+	options.binary_location = binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
 	options.headless = True
 	driver = webdriver.Chrome(PATH, chrome_options=options)
-
 	url = f"https://www.twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
 	driver.get(url)
 	print(url)
