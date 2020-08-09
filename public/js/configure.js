@@ -33,7 +33,7 @@ function loadConfig(email) {
             console.log("Document data:", doc.data());
             document.getElementById("reddit-status").innerHTML = doc.data().reddit.configured ? "Configured" : "Not Configured";
             document.getElementById("twitter-status").innerHTML = doc.data().twitter.configured ? "Configured" : "Not Configured";
-            document.getElementById("instagram-status").innerHTML = doc.data().instagram.configured ? "Configured" : "Not Configured";
+            document.getElementById("linkedin-status").innerHTML = doc.data().linkedin.configured ? "Configured" : "Not Configured";
             document.getElementById("facebook-status").innerHTML = doc.data().facebook.configured ? "Configured" : "Not Configured";
         } else {
             // doc.data() will be undefined in this case
@@ -67,7 +67,7 @@ function firstTime() {
                                 password: "",
                                 username: ""
                             },
-                            instagram: {
+                            linkedin: {
                                 configured: false,
                                 password: "",
                                 username: ""

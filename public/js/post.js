@@ -66,7 +66,7 @@ function post() {
             } else json["pic"] = "";
 
             if (json["reddit"]) {
-                console.log("REDDDDDDDDIT")
+                // console.log("REDDDDDDDDIT")
                 json["subject"] = document.getElementById("subject").value;
                 json["subreddit"] = document.getElementById("subreddit").value;
             }
