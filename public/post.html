@@ -8,9 +8,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
     <!-- <script src="./js/index.js"></script> -->
-    
-    <script src="./js/config.js"></script>
-    <script src="./js/post.js"></script>
+
 </head>
 
 <body>
@@ -38,7 +36,8 @@
 
                 <div class="checkbox-row">
                     <div class="checkbox">
-                        <input onchange = "updateReddit(this.checked)" type="checkbox" class="platform-box" value="reddit">
+                        <input onchange="updateReddit(this.checked)" type="checkbox" class="platform-box"
+                            value="reddit">
                         <label>Reddit</label>
                     </div>
                     <div class="checkbox">
@@ -52,25 +51,25 @@
                     </div>
 
                 </div>
-                <br/>
+                <br />
                 <div class="checkbox-row">
                     <div class="checkbox">
                         <input type="checkbox" class="platform-box" value="twitter">
                         <label>Twitter</label>
                     </div>
-                    
+
                 </div>
 
                 <div class="center-single form"><input id="post-file" type="file" value="Image Upload"></div>
                 <div class="center-single form"><textarea rows=10 id="post-text" placeholder="Post Message"></textarea>
                 </div>
 
-                
+
 
 
             </div>
 
-            <div id = "reddit-fields">
+            <div id="reddit-fields">
 
             </div>
             <div class="center-single"> <input type="submit" id="post-btn" onclick="post()" value="POST"></div>
@@ -80,9 +79,23 @@
     </div>
     <!-- End Content -->
 
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div id = "mc" class="modal-content">
+            <!-- <span class="close">&times;</span> -->
+            <p id = "post-message">Posting... Please wait patiently.</p>
+        </div>
+
+    </div>
+    <!-- End Modal -->
+
 </body>
 <footer>
 
+    <script src="./js/config.js"></script>
+    <script src="./js/post.js"></script>
     <script src="./js/logout.js"></script>
 </footer>
 

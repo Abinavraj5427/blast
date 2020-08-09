@@ -1,3 +1,9 @@
+// Get the modal
+var modal = document.getElementById("myModal");
+
+
+
+
 function selectAll() {
     // alert("Select All");
     var elements = document.getElementsByClassName("platform-box");
@@ -35,6 +41,7 @@ onloadauth();
 
 
 function post() {
+    modal.style.display = "block";
     var json = {};
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -75,7 +82,37 @@ function post() {
                     body: JSON.stringify(json)
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    console.log(data);
+
+                    var root = document.getElementById("mc");
+                    while (root.firstChild) {
+                        root.removeChild(root.lastChild);
+                    }
+
+                    // Get the <span> element that closes the modal
+                    var mc = document.getElementById("mc");
+                    var span = document.createElement("span");
+                    span.className = "close";
+                    span.innerHTML = "&times;";
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                        window.location.href = "./post.html";
+                    }
+                    mc.appendChild(span);
+
+                    var b = document.createElement("h3");
+                    b.innerHTML = "Loading Complete";
+                    mc.appendChild(b);
+
+                    var msg = document.createElement('p');
+                    msg.id = "post-message";
+                    msg.innerHTML = "";
+                    data.map(e => msg.innerHTML += "URL: " + e + "<br/>")
+                    mc.appendChild(msg);
+                });
         } else {
             window.location.href = "./index.html";
         }
