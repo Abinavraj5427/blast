@@ -6,7 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 def get_analytics(url):
-	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	PATH = "/Users/abina/Desktop/chromedriver"
+	
 	driver = webdriver.Chrome(PATH)
 
 	driver.get(url)

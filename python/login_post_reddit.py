@@ -8,8 +8,8 @@ import time
 
 def login_and_post_reddit(username, password, header, message, sub):
 
-	#PATH = "/Users/abina/Desktop/chromedriver"
-	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	PATH = "/Users/abina/Desktop/chromedriver"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
 
 	driver = webdriver.Chrome(PATH)
 

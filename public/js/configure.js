@@ -82,12 +82,7 @@ function firstTime() {
                                 password: "",
                                 username: ""
                             },
-                            posts: [{
-                                datetime: "",
-                                instagram_url: "",
-                                reddit_url: "",
-                                twitter_url: ""
-                            }]
+                            posts: []
 
                         })
                         .then(function () {

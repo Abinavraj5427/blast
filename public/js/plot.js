@@ -62,3 +62,33 @@ function loadPosts(){
 }
 
 loadPosts();
+
+showCurrentAnalytics();
+
+function showCurrentAnalytics(){
+    var json = {}
+    
+    var e = document.getElementById("postSelection");
+    var value = e.options[e.selectedIndex].value;
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            var email = user.email;
+            json['email'] = email;
+            json['datetime'] = value;
+            fetch("http://127.0.0.1:5000/data", {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(json)
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+        } else {
+            // User is signed out.
+            // ...
+            window.location.href = "./index.html";
+        }
+    });
+}

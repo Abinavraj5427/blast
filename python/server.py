@@ -4,6 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from login_post_reddit import login_and_post_reddit
+from datetime import datetime
 
 cred = credentials.Certificate('./python/firebase-sdk.json');
 firebase_admin.initialize_app(cred)
@@ -22,6 +23,10 @@ def post():
 
         userData = userRef.document(email).get().to_dict()
         
+        post = {}
+
+        now = datetime.now() 
+        post['datetime'] = now.strftime("%m-%d-%Y, %H:%M:%S")
         reddit_configured = userData["reddit"]["configured"]
         if(reddit_configured and some_json['reddit']):
             reddit_username = userData["reddit"]["username"]
@@ -29,8 +34,18 @@ def post():
             reddit_sub = some_json['subreddit']
             reddit_subject = some_json['subject']
             reddit_message = message;
-            login_and_post_reddit(reddit_username, reddit_password, reddit_subject, reddit_message, reddit_sub)
+            reddit_urls = login_and_post_reddit(reddit_username, reddit_password, reddit_subject, reddit_message, reddit_sub)
+            print(reddit_urls)
+            reddit_url = reddit_urls[0]
+            print(reddit_url)
+            posts = userData["posts"]
+            print(posts)
+            post["reddit_url"] = reddit_url
+            print("POST", post)
+            posts.append(post)
+            userRef.document(email).update({"posts":posts})
             # print(reddit_username)
+
 
         return jsonify(userData)
 
@@ -40,11 +55,17 @@ def data():
     if(request.method == 'POST'):
         some_json = request.get_json()
         email = some_json['email']
+        datetime = some_json['datetime']
 
-        userData = userRef.document(email).get()
-        # print(userData.to_dict())
+        userData = userRef.document(email).get().to_dict()
+        posts = userData["posts"]
 
-        return jsonify(userData.to_dict())
+        # output = {}
+        # for post in posts:
+        #     if post["datetime"] == datetime:
+        #         output = getAnalytics(post["reddit_url"])
+        
+        return jsonify(output)
 
 if __name__ == '__main__':
     app.run(debug=True)
