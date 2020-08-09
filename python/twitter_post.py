@@ -44,8 +44,8 @@ def login_and_post_twitter(username, password, message):
 
 
 
-#if __name__ == '__main__':
-#	login_and_post_twitter("throwaway3949596@gmail.com", "1234567a","Test message #29")
+if __name__ == '__main__':
+	login_and_post_twitter("throwaway3949596@gmail.com", "1234567a","Test message #29")
 
 
 
