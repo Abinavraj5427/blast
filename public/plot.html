@@ -9,9 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="./js/config.js"></script>
     
-    <script src="./js/plot.js"></script>
 </head>
 
 <body>
@@ -46,15 +44,33 @@
                 <h2>Upvotes and Downvotes</h2>
                 <canvas id="plot1" width=400 height=200></canvas>
             </div>
-        </div>
-        <div class="tile-row">
+
             <div class="tile">
                 <h2>Percent Upvotes</h2>
                 <canvas id="plot2" width=400 height=200></canvas>
             </div>
-
         </div>
+        <!-- <div class="tile-row">
+            
+
+        </div> -->
     </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div id = "mc" class="modal-content">
+            <!-- <span class="close">&times;</span> -->
+            <p id = "post-message">Loading... Please wait patiently.</p>
+        </div>
+
+    </div>
+    <!-- End Modal -->
 </body>
+
+    <script src="./js/config.js"></script>
+        
+    <script src="./js/plot.js"></script>
     <script src="./js/logout.js"></script>
 </html>

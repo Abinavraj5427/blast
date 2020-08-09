@@ -1,3 +1,5 @@
+var modal = document.getElementById("myModal");
+
 function redditDataGetter(x, ctx1, ctx2) {
     redditPlot1([x[0]["net upvotes"], x[0]["total downvotes"],
         x[0]["total upvotes"], x[0]["total votes"]], ctx1);
@@ -136,6 +138,7 @@ loadPosts();
 
 let dataDict = [];
 function showCurrentAnalytics(){
+    modal.style.display = "block";
     var json = {}
     var e = document.getElementById("post-selection");
     var value = e.options[e.selectedIndex].value;
@@ -157,6 +160,32 @@ function showCurrentAnalytics(){
                     var ctx1 = document.getElementById('plot1').getContext('2d');
                     var ctx2 = document.getElementById('plot2').getContext('2d');
                     redditDataGetter(data, ctx1, ctx2);
+
+                    var root = document.getElementById("mc");
+                    while (root.firstChild) {
+                        root.removeChild(root.lastChild);
+                    }
+
+                    // Get the <span> element that closes the modal
+                    var mc = document.getElementById("mc");
+                    var span = document.createElement("span");
+                    span.className = "close";
+                    span.innerHTML = "&times;";
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    }
+                    mc.appendChild(span);
+
+                    var b = document.createElement("h3");
+                    b.innerHTML = "Loading Complete";
+                    mc.appendChild(b);
+
+                    var msg = document.createElement('p');
+                    msg.id = "post-message";
+                    msg.innerHTML = "Graphs and Charts are ready.";
+                    mc.appendChild(msg);
                 });
         } else {
             // User is signed out.
@@ -164,10 +193,5 @@ function showCurrentAnalytics(){
             window.location.href = "./index.html";
         }
     });
-<<<<<<< HEAD
-    return dataDict;
-}
-=======
 }
 
->>>>>>> a4e9d191980de36e45e980bc70b174e248802406
