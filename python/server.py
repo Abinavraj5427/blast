@@ -7,6 +7,8 @@ from login_post_reddit import login_and_post_reddit
 from datetime import datetime
 from reddit_post_data import get_analytics
 from twitter_post import login_and_post_twitter
+from linkedin_post import post_linkedin
+from twitter_post_data import get_twitter_analytics
 
 cred = credentials.Certificate('./python/firebase-sdk.json');
 firebase_admin.initialize_app(cred)
@@ -60,6 +62,14 @@ def post():
             urls.append(twitter_url)
             post["twitter_url"] = twitter_url
 
+        linkedin_configured = userData["linkedin"]["configured"]
+        if(linkedin_configured and some_json["linkedin"]):
+            linkedin_username = userData["linkedin"]["username"]
+            linkedin_password = userData["linkedin"]["password"]
+            linkedin_message = message;
+            linkedin_url = post_linkedin(linkedin_username, linkedin_password, linkedin_message)
+            urls.append(linkedin_url)
+            post["linkedin_url"] = linkedin_url
         return jsonify(urls)
 
 
@@ -76,7 +86,15 @@ def data():
         output = []
         for post in posts:
             if post["datetime"] == datetime:
-                output.append(get_analytics(post["reddit_url"]))
+                if post["reddit_url"] != "":
+                    output.append(get_analytics(post["reddit_url"]))
+                else:
+                    output.append({"output": False})
+
+                if post["twitter_url"] != "":
+                    output.append(get_twitter_analytics(post["twitter_url"]))
+                else:
+                    output.append({"output": False})
         
         return jsonify(output)
 
