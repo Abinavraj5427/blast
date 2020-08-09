@@ -138,6 +138,13 @@ loadPosts();
 
 let dataDict = [];
 function showCurrentAnalytics(){
+    var root = document.getElementById("mc");
+    while (root.firstChild) {
+        root.removeChild(root.lastChild);
+    }
+    var p = document.createElement("p");
+    p.innerHTML = "Loading... Please wait patiently.";
+    root.appendChild(p)
     modal.style.display = "block";
     var json = {}
     var e = document.getElementById("post-selection");
@@ -157,6 +164,7 @@ function showCurrentAnalytics(){
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     var ctx1 = document.getElementById('plot1').getContext('2d');
                     var ctx2 = document.getElementById('plot2').getContext('2d');
                     redditDataGetter(data, ctx1, ctx2);

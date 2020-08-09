@@ -51,7 +51,8 @@ def post():
             posts.append(post)
             userRef.document(email).update({"posts":posts})
             # print(reddit_username)
-
+        else:
+            post["reddit_url"] =""
         
         twitter_configured = userData["reddit"]["configured"]
         if(twitter_configured and some_json['twitter']):
@@ -61,6 +62,8 @@ def post():
             twitter_url = login_and_post_twitter(twitter_username, twitter_password, twitter_message)
             urls.append(twitter_url)
             post["twitter_url"] = twitter_url
+        else:
+            post["twitter_url"] =""
 
         linkedin_configured = userData["linkedin"]["configured"]
         if(linkedin_configured and some_json["linkedin"]):
@@ -70,6 +73,8 @@ def post():
             linkedin_url = post_linkedin(linkedin_username, linkedin_password, linkedin_message)
             urls.append(linkedin_url)
             post["linkedin_url"] = linkedin_url
+        else:
+            post["linkedin_url"] =""
         return jsonify(urls)
 
 

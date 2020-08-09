@@ -10,12 +10,12 @@ import time
 
 def login_and_post_twitter(username, password, message):
 	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-	PATH = "/Users/Wish/Downloads/chromedriver"
+	# PATH = "/Users/Wish/Downloads/chromedriver"
 
-	# options = Options()
-	# options.headless = True
-	# driver = webdriver.Chrome(PATH, chrome_options=options)
-	driver = webdriver.Chrome(PATH)
+	PATH = "/Users/abina/Desktop/chromedriver"
+	options = Options()
+	options.headless = True
+	driver = webdriver.Chrome(PATH, chrome_options=options)
 
 	driver.get("https://www.twitter.com/login")
 	time.sleep(1)
@@ -40,7 +40,7 @@ def login_and_post_twitter(username, password, message):
 	#post = driver.find_element_by_class_name("css-1dbjc4n")
 	#post.click()
 	#time.sleep(5)
-	#return post_twitter(username)
+	return post_twitter(username)
 
 
 

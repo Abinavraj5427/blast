@@ -3,11 +3,17 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import time
 
 def get_twitter_analytics(url):
-    PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-    driver = webdriver.Chrome(PATH)
+    # PATH = "/Users/briantaylor/Desktop/important/chromedriver
+    # "
+    PATH = "/Users/abina/Desktop/chromedriver"
+
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(PATH, chrome_options=options)
 
     driver.get(url)
     time.sleep(2)
