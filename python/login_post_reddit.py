@@ -9,6 +9,8 @@ import time
 def login_and_post_reddit(username, password, header, message, sub):
 
 	PATH = "/Users/abina/Desktop/chromedriver"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+
 	driver = webdriver.Chrome(PATH)
 
 	driver.get("https://www.reddit.com/login/")
@@ -25,7 +27,7 @@ def login_and_post_reddit(username, password, header, message, sub):
 	time.sleep(10)
 
 	urls = []
-
+	
 	driver.get(f"https://www.reddit.com/{sub}/submit")
 
 	title = driver.find_element_by_css_selector(".PqYQ3WC15KaceZuKcFI02")
