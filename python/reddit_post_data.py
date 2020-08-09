@@ -16,6 +16,9 @@ def get_analytics(url):
 	driver.get(url)
 	upvote_percent = driver.find_element_by_css_selector(".t4Hq30BDzTeJ85vREX7_M").text.strip()
 	net_upvotes = driver.find_element_by_css_selector("._1E9mcoVn4MYnuBQSVDt1gC").text.strip()
+	comments = driver.find_element_by_css_selector(".FHCV02u6Cp2zYL0fhQPsO").text.split(" ")
+	comments = int(comments[0])
+
 	if net_upvotes[-1] == "k":
 		net_upvotes = int(float(net_upvotes[:-1]) * 1000)
 	else:
@@ -38,16 +41,17 @@ def get_analytics(url):
 		"net upvotes": net_upvotes,
 		"total votes": total_votes,
 		"total downvotes": total_down,
-		"total upvotes": total_up
+		"total upvotes": total_up,
+		"comments": comments
 	}
 	return analytics
 
 
 if __name__ == '__main__':
 	url = 'https://www.reddit.com/r/PrequelMemes/comments/i619dd/ah_yes_the_negotiator/'
-	get_analytics(url)
+	print(get_analytics(url))
 	url = "https://www.reddit.com/r/berkeley/comments/i5txlk/did_anyone_notice_that_berkeley_got_namedropped/"
-	get_analytics(url)
+	print(get_analytics(url))
 
 
 
