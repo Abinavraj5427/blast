@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def post_twitter(user, identity):
+def post_twitter(user):
 	consumer_key = 'vTw9xljXAMZCoVbLuZfF1NLfF'
 	consumer_secret = 'oTXSNmic3AiCv7yhNSGMSTw7J1EXNUpRXgtzLQlLWC3bi0p2Fz'
 	access_token = '1292020112682135553-gHgSRJ8jk7WxTyzlQhwWZhW27qJIjp'
@@ -18,14 +18,14 @@ def post_twitter(user, identity):
 	auth.set_access_token(access_token, access_token_secret)
 	api = tweepy.API(auth, wait_on_rate_limit=True)
 
-	#api.get_status("123")
-	api.get_status(identity)
-
 
 	tweet = api.user_timeline(screen_name = user, count = 10, include_rts = True)[0]
 	
-	PATH = "/Users/Wish/Downloads/chromedriver"
-	driver = webdriver.Chrome(PATH)
+	# PATH = "/Users/Wish/Downloads/chromedriver"
+	PATH = "/Users/abina/Desktop/chromedriver"
+	options = Options()
+	options.headless = True
+	driver = webdriver.Chrome(PATH, chrome_options=options)
 
 	url = f"https://www.twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
 	driver.get(url)
