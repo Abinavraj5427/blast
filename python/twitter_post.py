@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 import time
 
+
 def login_and_post_twitter(username, password, message):
 	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
 
