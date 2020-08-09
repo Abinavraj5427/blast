@@ -8,7 +8,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="./js/config.js"></script>
     
     <script src="./js/plot.js"></script>
@@ -26,6 +26,19 @@
     <!-- End Navbar -->
 
     <div id=content>
+        <map class="navbar">
+            <div id = "title">
+                <h1> POST HISTORY </h1>
+                POST N<br>
+                POST N - 1<br>
+                POST N - 2<br>
+                POST N - 3<br>
+                +<br>
+                +<br>
+                +<br>
+                POST 1
+            </div>
+        </map>
         <div id="intro-msg">
             <h2>Analytics</h2>
             <p>See how well your posts did. Learn how to <strong>blast</strong>.</p>
@@ -35,61 +48,118 @@
         <div class="tile-row">
             <div class="tile">
                 <div id = "post-choice">
-                    <label >Choose a post: </label>
+                    <label >Posts: </label>
 
                     <select  id="post-selection">
-                        
+                        <option value = "none selected">Please choose a post</option>
+                        <optgroup label="Reddit">Reddit</optgroup>
+                        <option value = "TESTPOST1">TEST</option>
+                        <optgroup label="Twitter"></optgroup>
+                        <option value="TESTPOST2"></option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="tile-row">
             <div class="tile">
-                <h2>responses to post by day of week</h2>
-                <canvas id="plot" width=400 height=200></canvas>
+                <h2>Ratio of upvotes to downvotes by day of week</h2>
+                <canvas id="plot1" width=400 height=200></canvas>
                 <script>
-                    var ctx = document.getElementById('plot').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
-                            datasets: [{
-                                label: '# of Votes',
-                                data: [13, 27, 22, 23, 24, 21, 15],
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(102,255,219,0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgb(102,255,219, 1)',
-                                    'rgba(255, 159, 64, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            legend: {
-                                display: false
-                            },
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
+                    var posts = document.getElementById('post-selection');
+                    var ctx = document.getElementById('plot1').getContext('2d');
+                    function displayPost() { return (document.getElementById("post-selection").value == "TESTPOST1")};
+                    function ratioPlotter() {
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [13, 27, 22, 23, 24, 21, 15],
+                                    backgroundColor: [
+                                        'rgba(54, 162, 235, 0.2)'
+
+                                    ],
+                                    borderColor: [
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgb(102,255,219, 1)'
+                                    ],
+                                    borderWidth: 1.5
                                 }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                    ratioPlotter();
+                </script>
+            </div>
+        </div>
+        <div class="tile-row">
+            <div class="tile">
+                <h2>Ratio of upvotes to downvotes by day of week</h2>
+                <canvas id="plot2" width=400 height=200></canvas>
+                <script>
+                    var ctx = document.getElementById('plot2').getContext('2d');
+                    function ratioPlotter() {
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [13, 27, 22, 23, 24, 21, 15],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(102,255,219,0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgb(102,255,219, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    }
+                    ratioPlotter();
                 </script>
             </div>
 

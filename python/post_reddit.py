@@ -5,12 +5,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-PATH = "/Users/abina/Desktop/chromedriver"
-driver = webdriver.Chrome(PATH)
-
-driver.get("https://www.reddit.com/login/")
 
 def login_and_post_reddit(username, password, header, message, subs):
+	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	driver = webdriver.Chrome(PATH)
+	driver.get("https://www.reddit.com/login/")
+
 
 	PATH = "/Users/abina/Desktop/chromedriver"
 	driver = webdriver.Chrome(PATH)

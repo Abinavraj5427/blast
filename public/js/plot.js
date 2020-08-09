@@ -9,7 +9,6 @@ function onloadauth(){
             //   var isAnonymous = user.isAnonymous;
             //   var uid = user.uid;
             //   var providerData = user.providerData;
-           
             // ...
         } else {
             // User is signed out.
