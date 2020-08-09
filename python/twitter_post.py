@@ -7,9 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 def login_and_post_twitter(username, password, message):
-	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
 
-	driver = webdriver.Chrome(PATH)
+	op = webdriver.ChromeOptions()
+	op.add_argument('headless')
+	driver = webdriver.Chrome(options=op)
 
 	driver.get("https://www.twitter.com/login")
 	time.sleep(1)
