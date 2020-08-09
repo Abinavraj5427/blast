@@ -5,45 +5,56 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-driver = webdriver.Chrome(PATH)
 
-driver.get("https://www.reddit.com/login/")
-
-
-username_login = driver.find_element_by_id('loginUsername')
-username_login.send_keys("throwawaytest2864")
-
-password_login = driver.find_element_by_id("loginPassword")
-password_login.send_keys("1234567a")
-
-button = driver.find_element_by_css_selector(".m-full-width")
-button.click()
-
-time.sleep(10)
+def login_and_post_reddit(username, password, header, message, subs):
+	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	driver = webdriver.Chrome(PATH)
+	driver.get("https://www.reddit.com/login/")
 
 
-subs = ['r/testingground4bots','r/test', 'r/BotsPlayHere']
-urls = []
+	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	driver = webdriver.Chrome(PATH)
 
-for sub in subs:
+	driver.get("https://www.reddit.com/login/")
+
+	username_login = driver.find_element_by_id('loginUsername')
+	username_login.send_keys(username)
+
+	password_login = driver.find_element_by_id("loginPassword")
+	password_login.send_keys(password)
+
+	button = driver.find_element_by_css_selector(".m-full-width")
+	button.click()
+
+	time.sleep(10)
+
+	urls = []
+
 	driver.get(f"https://www.reddit.com/{sub}/submit")
 
 	title = driver.find_element_by_css_selector(".PqYQ3WC15KaceZuKcFI02")
-	title.send_keys("Testing 1 2 3 4 5 6")
+	title.send_keys(header)
 
 	body = driver.find_element_by_css_selector(".notranslate")
-	body.send_keys("This is where we test the longer body of a post, to see"
-		" if it will work for allowing us to automate postings")
+	body.send_keys(message)
 
 
 	post_btn = driver.find_element_by_css_selector("._2JBsHFobuapzGwpHQjrDlD")
 	post_btn.click()
-	print("done with first round.")
-	time.sleep(4)
-	urls.append(driver.current_url)
-	#The list of urls will enable us to easily track posts to gain statistics about those posts later.
 
+	time.sleep(2)
+	urls.append(driver.current_url)
+
+	return urls
+	#The list of urls will enable us to easily track posts to gain statistics about those posts later.
+if __name__ == '__main__':
+	username = "throwaway3949596"
+	password = "1234567a"
+	header = "This is just a sample post, nothing to see here"
+	message = "Trying to automate posting to reddit, this was posted"
+	message += "by a bot, feel free to ignore, no big deal either way"
+	sub = "r/BotsPlayHere"
+	login_and_post_reddit(username, password, header, message, sub)
 
 #Alright, so, it works if it is allowed to post multiple times. However, if it is thrown an error,
 #such as being unable to post, it will not continue beyond that error. I am, 
