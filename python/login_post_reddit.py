@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-def login_and_post_reddit(username, password, header, message, subs):
+def login_and_post_reddit(username, password, header, message, sub):
 
 	PATH = "/Users/abina/Desktop/chromedriver"
 	driver = webdriver.Chrome(PATH)
