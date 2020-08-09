@@ -13,7 +13,7 @@ input{
     font-family: 'Righteous';
 }
 
-input[type=text]{
+input[type=text], input[type=password]{
     height: 5vh;
     width: 30vh;
     /* css 3 */
