@@ -1,9 +1,12 @@
 var modal = document.getElementById("myModal");
 
-function redditDataGetter(x, ctx1, ctx2) {
+function redditDataGetter(x, ctx1, ctx2, ctx3, ctx4) {
+    console.log("PLOTTED");
     redditPlot1([x[0]["net upvotes"], x[0]["total downvotes"],
         x[0]["total upvotes"], x[0]["total votes"]], ctx1);
     redditPlot2([x[0]["total upvotes"], x[0]["total downvotes"]], ctx2);
+    redditPlot3([x[0].comments + x[0]["total votes"], x[0].comments], ctx3);
+    redditPlot4([x[1]["likes"], x[1]["retweets_comments"]], ctx4)
 }
 function redditPlot1(data, ctx) {
     new Chart(ctx, {
@@ -68,6 +71,66 @@ function redditPlot2(data, ctx) {
         }
     });
 }
+function redditPlot3(data, ctx) {
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Total Reactions", "Comments"],
+            datasets: [{
+                label: 'Percentage',
+                data: data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgb(141,19,0)'
+                ],
+                borderColor: [
+                    'rgb(102,255,219, 1)',
+                    'rgb(255,30,0)'
+                ],
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            legend: {
+                display: true
+            },
+        }
+    });
+}
+function redditPlot4(data, ctx) {
+    console.log(data);
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Likes', 'Retweets and Comments'],
+            datasets: [{
+                label: ["How many?"],
+                data: data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(166,54,235,0.2)'
+                ],
+                borderColor: [
+                    'rgb(102,255,219, 1)',
+                    'rgb(166,54,235, 1)',
+                ],
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
 
 function onloadauth(){
     firebase.auth().onAuthStateChanged(function (user) {
@@ -92,6 +155,7 @@ function onloadauth(){
 onloadauth();
 
 function loadPosts(){
+    console.log("LOADING");
     // Firebase Auth
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -104,11 +168,9 @@ function loadPosts(){
                     console.log("Document data:", doc.data());
 
                     var root = document.getElementById('post-selection');
-                    
                     for(let i = 0; i< doc.data().posts.length; i++){
-                        
                         let post = doc.data().posts[i];
-                        // console.log(post)
+                        console.log(post)
                         let option = document.createElement('option');
                         option.setAttribute('data-index', i);
                         // console.log(i);
@@ -148,7 +210,7 @@ function showCurrentAnalytics(){
     modal.style.display = "block";
     var json = {}
     var e = document.getElementById("post-selection");
-    var value = e.options[e.selectedIndex].value;
+    var value = e.options[e.selectedIndex == -1?0:e.selectedIndex].value;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var email = user.email;
@@ -167,7 +229,9 @@ function showCurrentAnalytics(){
                     console.log(data)
                     var ctx1 = document.getElementById('plot1').getContext('2d');
                     var ctx2 = document.getElementById('plot2').getContext('2d');
-                    redditDataGetter(data, ctx1, ctx2);
+                    var ctx3 = document.getElementById('plot3').getContext('2d');
+                    var ctx4 = document.getElementById('plot4').getContext('2d');
+                    redditDataGetter(data, ctx1, ctx2, ctx3, ctx4);
 
                     var root = document.getElementById("mc");
                     while (root.firstChild) {
