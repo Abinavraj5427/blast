@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+PATH = "/home/briantaylor/Desktop/chromedriver"
 driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.twitter.com/login")
@@ -19,13 +19,10 @@ password_login.send_keys("1234567a")
 
 button = driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div[1]/form/div/div[3]/div/div")
 button.click()
-
-
-url = 'https://twitter.com/CollegeBoard/status/1291750806920798209'
+url ='https://twitter.com/elonmusk/status/1290056061253165057?cxt=HHwWgoCt9eLJmecjAAAA'
 driver.get(url)
-
 time.sleep(2)
 
-likes = driver.find_element_by_css_selector("css-1dbjc4n")
-print(likes.text)
+likes = driver.find_element_by_css_selector('.css-1dbjc4n')
 
+print(likes.text)
