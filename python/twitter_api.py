@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def post_twitter():
+def post_twitter(user):
 	consumer_key = 'vTw9xljXAMZCoVbLuZfF1NLfF'
 	consumer_secret = 'oTXSNmic3AiCv7yhNSGMSTw7J1EXNUpRXgtzLQlLWC3bi0p2Fz'
 	access_token = '1292020112682135553-gHgSRJ8jk7WxTyzlQhwWZhW27qJIjp'
@@ -20,7 +20,7 @@ def post_twitter():
 
 	api.update_status("123")
 
-	tweet = api.user_timeline(screen_name = 'throwaway394959', count = 10, include_rts = True)[0]
+	tweet = api.user_timeline(screen_name = user, count = 10, include_rts = True)[0]
 	
 	PATH = "/Users/Wish/Downloads/chromedriver"
 	driver = webdriver.Chrome(PATH)
@@ -28,4 +28,5 @@ def post_twitter():
 	url = f"https://www.twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
 	driver.get(url)
 	print(url)
+	return url
 

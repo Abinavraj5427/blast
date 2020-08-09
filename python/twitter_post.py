@@ -4,16 +4,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-
+from twitter_api import post_twitter
 import time
 
 
 def login_and_post_twitter(username, password, message):
-	PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
+	PATH = "/Users/abina/Desktop/chromedriver"
 
-	options = Options()
-	options.headless = True
-	driver = webdriver.Chrome(PATH, chrome_options=options)
+	# options = Options()
+	# options.headless = True
+	# driver = webdriver.Chrome(PATH, chrome_options=options)
+	driver = webdriver.Chrome(PATH)
 
 	driver.get("https://www.twitter.com/login")
 	time.sleep(1)
@@ -31,11 +33,12 @@ def login_and_post_twitter(username, password, message):
 	body.send_keys(message)
 	body.send_keys(Keys.COMMAND, Keys.ENTER)
 	time.sleep(4)
-	driver.get("https://www.twitter.com/throwaway394959")
+	driver.get(f"https://www.twitter.com/{username}")
 	time.sleep(2)
 	post = driver.find_element_by_class_name("css-1dbjc4n")
 	post.click()
 	time.sleep(5)
+	return post_twitter(username)
 
 
 
