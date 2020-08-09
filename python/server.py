@@ -28,6 +28,7 @@ def post():
         post = {}
 
         now = datetime.now() 
+        urls = []
         post['datetime'] = now.strftime("%m-%d-%Y, %H:%M:%S")
         reddit_configured = userData["reddit"]["configured"]
         if(reddit_configured and some_json['reddit']):
@@ -43,6 +44,7 @@ def post():
             posts = userData["posts"]
             # print(posts)
             post["reddit_url"] = reddit_url
+            urls.append(reddit_url)
             # print("POST", post)
             posts.append(post)
             userRef.document(email).update({"posts":posts})
@@ -55,9 +57,10 @@ def post():
             twitter_password = userData["twitter"]["password"]
             twitter_message = message;
             twitter_url = login_and_post_twitter(twitter_username, twitter_password, twitter_message)
+            urls.append(twitter_url)
             post["twitter_url"] = twitter_url
 
-        return jsonify(userData)
+        return jsonify(urls)
 
 
 @app.route("/data", methods=['POST'])

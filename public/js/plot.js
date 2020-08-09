@@ -1,3 +1,72 @@
+function redditDataGetter(x, ctx1, ctx2) {
+    redditPlot1([x[0]["net upvotes"], x[0]["total downvotes"],
+        x[0]["total upvotes"], x[0]["total votes"]], ctx1);
+    redditPlot2([x[0]["total upvotes"], x[0]["total downvotes"]], ctx2);
+}
+function redditPlot1(data, ctx) {
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Net Upvotes", "Downvotes", "Total Upvotes", "Total Votes"],
+            datasets: [{
+                label: '# of Votes',
+                data: data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(117,235,54,0.2)',
+                    'rgba(208,235,54,0.2)',
+                    'rgba(166,54,235,0.2)'
+                ],
+                borderColor: [
+                    'rgb(102,255,219, 1)',
+                    'rgba(117,235,54,1)',
+                    'rgb(208,235,54, 1)',
+                    'rgb(166,54,235, 1)',
+                ],
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+function redditPlot2(data, ctx) {
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Upvotes", "Downvotes"],
+            datasets: [{
+                label: 'Percentage',
+                data: data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgb(141,19,0)'
+                ],
+                borderColor: [
+                    'rgb(102,255,219, 1)',
+                    'rgb(255,30,0)'
+                ],
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            legend: {
+                display: true
+            },
+        }
+    });
+}
+
 function onloadauth(){
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -46,7 +115,7 @@ function loadPosts(){
                         root.appendChild(option);
                     }
                     
-                    showCurrentAnalytics();
+                    dataDict = showCurrentAnalytics();
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -65,10 +134,9 @@ function loadPosts(){
 
 loadPosts();
 
-
+let dataDict = [];
 function showCurrentAnalytics(){
     var json = {}
-    
     var e = document.getElementById("post-selection");
     var value = e.options[e.selectedIndex].value;
     firebase.auth().onAuthStateChanged(function (user) {
@@ -85,11 +153,21 @@ function showCurrentAnalytics(){
                     body: JSON.stringify(json)
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    var ctx1 = document.getElementById('plot1').getContext('2d');
+                    var ctx2 = document.getElementById('plot2').getContext('2d');
+                    redditDataGetter(data, ctx1, ctx2);
+                });
         } else {
             // User is signed out.
             // ...
             window.location.href = "./index.html";
         }
     });
+<<<<<<< HEAD
+    return dataDict;
 }
+=======
+}
+
+>>>>>>> a4e9d191980de36e45e980bc70b174e248802406
