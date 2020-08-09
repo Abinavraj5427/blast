@@ -1,14 +1,31 @@
 import os
 import tweepy
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
-consumer_key = 'vTw9xljXAMZCoVbLuZfF1NLfF'
-consumer_secret = 'oTXSNmic3AiCv7yhNSGMSTw7J1EXNUpRXgtzLQlLWC3bi0p2Fz'
-access_token = '1292020112682135553-gHgSRJ8jk7WxTyzlQhwWZhW27qJIjp'
-access_token_secret = '0Kpl2qYHBtAg6AUzuFuw6VPiptz8QE1N9jM6xLIRcMO87'
+def post_twitter():
+	consumer_key = 'vTw9xljXAMZCoVbLuZfF1NLfF'
+	consumer_secret = 'oTXSNmic3AiCv7yhNSGMSTw7J1EXNUpRXgtzLQlLWC3bi0p2Fz'
+	access_token = '1292020112682135553-gHgSRJ8jk7WxTyzlQhwWZhW27qJIjp'
+	access_token_secret = '0Kpl2qYHBtAg6AUzuFuw6VPiptz8QE1N9jM6xLIRcMO87'
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth, wait_on_rate_limit=True)
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+	auth.set_access_token(access_token, access_token_secret)
+	api = tweepy.API(auth, wait_on_rate_limit=True)
 
-api.update_status("Test tweet success")
+	api.update_status("123")
+
+	tweet = api.user_timeline(screen_name = 'throwaway394959', count = 10, include_rts = True)[0]
+	
+	PATH = "/Users/Wish/Downloads/chromedriver"
+	driver = webdriver.Chrome(PATH)
+
+	url = f"https://www.twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
+	driver.get(url)
+	print(url)
+
