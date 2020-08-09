@@ -25,8 +25,6 @@ def login_and_post_reddit(username, password, header, message, sub):
 	button.click()
 
 	time.sleep(10)
-
-	urls = []
 	
 	driver.get(f"https://www.reddit.com/{sub}/submit")
 
@@ -41,9 +39,12 @@ def login_and_post_reddit(username, password, header, message, sub):
 	post_btn.click()
 
 	time.sleep(2)
-	urls.append(driver.current_url)
-
-	return urls
+	url = driver.current_url
+	time.sleep(3)
+	if "comments" in url:
+		return url
+	else:
+		print("failed to post on reddit")
 	#The list of urls will enable us to easily track posts to gain statistics about those posts later.
 if __name__ == '__main__':
 	username = "throwaway3949596"
