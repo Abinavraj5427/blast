@@ -20,9 +20,10 @@ def get_analytics(url):
 	comments = int(comments[0])
 
 	if net_upvotes[-1] == "k":
-		net_upvotes = int(float(net_upvotes[:-1]) * 1000)
-	else:
-		net_upvotes = int(net_upvotes)
+		net_upvotes = net_upvotes.replace("k", "000")
+	if "." in net_upvotes:
+		net_upvotes = net_upvotes.replace(".", "")
+	net_upvotes = int(net_upvotes)
 
 	if upvote_percent[1] == "%":
 		upvote_percent = int(upvote_percent[:1])
