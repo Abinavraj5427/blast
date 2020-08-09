@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import time
 
 
@@ -10,8 +11,10 @@ def login_and_post_reddit(username, password, header, message, sub):
 
 	PATH = "/Users/abina/Desktop/chromedriver"
 	# PATH = "/Users/briantaylor/Desktop/important/chromedriver"
-
-	driver = webdriver.Chrome(PATH)
+	options = Options()
+	options.headless = True
+	driver = webdriver.Chrome(PATH, chrome_options=options)
+	
 
 	driver.get("https://www.reddit.com/login/")
 

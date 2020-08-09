@@ -6,6 +6,7 @@ from firebase_admin import firestore
 from login_post_reddit import login_and_post_reddit
 from datetime import datetime
 from reddit_post_data import get_analytics
+from twitter_post import login_and_post_twitter
 
 cred = credentials.Certificate('./python/firebase-sdk.json');
 firebase_admin.initialize_app(cred)
@@ -27,6 +28,7 @@ def post():
         post = {}
 
         now = datetime.now() 
+        urls = []
         post['datetime'] = now.strftime("%m-%d-%Y, %H:%M:%S")
         reddit_configured = userData["reddit"]["configured"]
         if(reddit_configured and some_json['reddit']):
@@ -36,19 +38,29 @@ def post():
             reddit_subject = some_json['subject']
             reddit_message = message;
             reddit_urls = login_and_post_reddit(reddit_username, reddit_password, reddit_subject, reddit_message, reddit_sub)
-            print(reddit_urls)
-            reddit_url = reddit_urls[0]
-            print(reddit_url)
+            # print(reddit_urls)
+            reddit_url = reddit_urls
+            # print(reddit_url)
             posts = userData["posts"]
-            print(posts)
+            # print(posts)
             post["reddit_url"] = reddit_url
-            print("POST", post)
+            urls.append(reddit_url)
+            # print("POST", post)
             posts.append(post)
             userRef.document(email).update({"posts":posts})
             # print(reddit_username)
 
+        
+        twitter_configured = userData["reddit"]["configured"]
+        if(twitter_configured and some_json['twitter']):
+            twitter_username = userData["twitter"]["username"]
+            twitter_password = userData["twitter"]["password"]
+            twitter_message = message;
+            twitter_url = login_and_post_twitter(twitter_username, twitter_password, twitter_message)
+            urls.append(twitter_url)
+            post["twitter_url"] = twitter_url
 
-        return jsonify(userData)
+        return jsonify(urls)
 
 
 @app.route("/data", methods=['POST'])
@@ -61,10 +73,10 @@ def data():
         userData = userRef.document(email).get().to_dict()
         posts = userData["posts"]
 
-        output = {}
+        output = []
         for post in posts:
             if post["datetime"] == datetime:
-                output = get_analytics(post["reddit_url"])
+                output.append(get_analytics(post["reddit_url"]))
         
         return jsonify(output)
 
