@@ -35,17 +35,17 @@ print(likes.text)
 
 
 
-urls = ['https://twitter.com/throwaway394959/status/1292065983146758145',
-	"https://twitter.com/boswellhs/status/1291830495551074305",
-	"https://twitter.com/CollegeBoard/status/1291750806920798209"]
+urls = ['https://twitter.com/throwaway394959/status/1292065983146758145']
 for url in urls:
 	driver.get(url)
 	page = requests.get(url)
 	soup = BeautifulSoup(page.text, "html.parser")
+
+	print()
 	
 	#match the string with the css code, find the numbers after it
-	retweet_comment = soup.find('span', {'class':"r-13awgt0"})
-	print(retweet_comment)
+	#retweet_comment = soup.find('span', {'class':"r-13awgt0"})
+	#print(retweet_comment)
 
 	#total_number =  driver.find_element_by_css_selector(".css-16my406")
 	#print(total_number.text)
