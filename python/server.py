@@ -5,6 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from login_post_reddit import login_and_post_reddit
 from datetime import datetime
+from reddit_post_data import get_analytics
 
 cred = credentials.Certificate('./python/firebase-sdk.json');
 firebase_admin.initialize_app(cred)
@@ -60,10 +61,10 @@ def data():
         userData = userRef.document(email).get().to_dict()
         posts = userData["posts"]
 
-        # output = {}
-        # for post in posts:
-        #     if post["datetime"] == datetime:
-        #         output = getAnalytics(post["reddit_url"])
+        output = {}
+        for post in posts:
+            if post["datetime"] == datetime:
+                output = get_analytics(post["reddit_url"])
         
         return jsonify(output)
 

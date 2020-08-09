@@ -45,6 +45,8 @@ function loadPosts(){
                         option.innerHTML = post.datetime;
                         root.appendChild(option);
                     }
+                    
+                    showCurrentAnalytics();
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -63,12 +65,11 @@ function loadPosts(){
 
 loadPosts();
 
-showCurrentAnalytics();
 
 function showCurrentAnalytics(){
     var json = {}
     
-    var e = document.getElementById("postSelection");
+    var e = document.getElementById("post-selection");
     var value = e.options[e.selectedIndex].value;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
