@@ -82,7 +82,12 @@ function firstTime() {
                                 password: "",
                                 username: ""
                             },
-                            posts: []
+                            posts: [{
+                                datetime: "08-08-2020, 21:31:09",
+                                reddit_url:"",
+                                twitter_url:"",
+                                linkedin_url:""
+                            }]
 
                         })
                         .then(function () {

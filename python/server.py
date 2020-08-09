@@ -49,12 +49,11 @@ def post():
             urls.append(reddit_url)
             # print("POST", post)
             posts.append(post)
-            userRef.document(email).update({"posts":posts})
             # print(reddit_username)
         else:
             post["reddit_url"] =""
         
-        twitter_configured = userData["reddit"]["configured"]
+        twitter_configured = userData["twitter"]["configured"]
         if(twitter_configured and some_json['twitter']):
             twitter_username = userData["twitter"]["username"]
             twitter_password = userData["twitter"]["password"]
@@ -75,6 +74,8 @@ def post():
             post["linkedin_url"] = linkedin_url
         else:
             post["linkedin_url"] =""
+        
+        userRef.document(email).update({"posts":post})
         return jsonify(urls)
 
 
